@@ -18,7 +18,10 @@ type Props = NativeStackScreenProps<RootStackParamList, "Initial">;
 
 const InitialScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigate("Welcome")}
+    >
       <ImageBackground
         source={require("../assets/images/profil.jpg")} // Remplacez par le chemin de votre image
         style={styles.backgroundImage}
@@ -31,16 +34,13 @@ const InitialScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
             </Text>
           </View>
           <View style={styles.bottomHalf}>
-            <TouchableOpacity
-              onPress={() => navigate("Welcome")} // Naviguer vers la page de bienvenue
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>Suivant</Text>
-            </TouchableOpacity>
+            <Text style={styles.instructionText}>
+              Appuyez n'importe où pour continuer
+            </Text>
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -69,9 +69,8 @@ const styles = StyleSheet.create({
   },
   bottomHalf: {
     justifyContent: "flex-end",
-    alignItems: "flex-end",
+    alignItems: "center",
     width: "100%",
-    paddingRight: Spacing * 4,
     paddingBottom: Spacing * 4,
   },
   welcomeText: {
@@ -80,16 +79,10 @@ const styles = StyleSheet.create({
     fontFamily: Font["poppins-bold"],
     textAlign: "center",
   },
-  button: {
-    backgroundColor: "rgba(255, 255, 255, 0.7)", // Blanc avec transparence
-    paddingVertical: Spacing * 1.5,
-    paddingHorizontal: Spacing * 4,
-    borderRadius: Spacing,
-  },
-  buttonText: {
-    fontFamily: Font["poppins-bold"],
-    color: Colors.primary,
-    fontSize: FontSize.large,
+  instructionText: {
+    fontSize: FontSize.medium,
+    color: Colors.onPrimary,
+    fontFamily: Font["poppins-regular"],
     textAlign: "center",
   },
 });
